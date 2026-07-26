@@ -42,6 +42,7 @@ variable "db_password" {
   description = "database password"
   type        = string
   sensitive   = true
+  ephemeral   = true
 
   validation {
     condition     = length(var.db_password) >= 8

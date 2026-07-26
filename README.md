@@ -180,5 +180,4 @@ This provides:
 - External health verification (from outside the service)
 - Automatic detection of downtime
 
-Full diagram can be seen in the project's files: architecture-diagram.png
 

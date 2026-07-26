@@ -27,10 +27,11 @@ resource "google_sql_database" "database" {
 }
 # creating user for database
 resource "google_sql_user" "user" {
-  name     = var.db_user
-  instance = google_sql_database_instance.postgres.name
-  password = var.db_password
-  project  = var.project_id
+  name                = var.db_user
+  instance            = google_sql_database_instance.postgres.name
+  password_wo         = var.db_password
+  password_wo_version = 1
+  project             = var.project_id
 }
 
 # creating a secret entry in secret manager
@@ -45,6 +46,7 @@ resource "google_secret_manager_secret" "db_password" {
 
 # applying given password to the secret entry
 resource "google_secret_manager_secret_version" "db_password_version" {
-  secret      = google_secret_manager_secret.db_password.id
-  secret_data = var.db_password
+  secret                 = google_secret_manager_secret.db_password.id
+  secret_data_wo         = var.db_password
+  secret_data_wo_version = 1
 }
